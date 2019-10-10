@@ -1,0 +1,3 @@
+*.h5
+#not importing heavy hdf5 weights files
+*images/
