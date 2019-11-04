@@ -32,19 +32,6 @@ class AnimeFace:
     def __init__(self):
         self.cascadefile = "datafiles/lbpcascade_animeface.xml" # kaggle/input/datafiles/lbpcascade_animeface.xml
     
-    def make_image_for_plt(self, image):
-        '''
-        For some reasons, calling cv2.imshow(str, cv2_image_object) crashes the Kaggle kernel,
-        so I used plt.imshow(cv2_image_object) instead.
-        However, OpenCV2 module reads and displays image as BGR format, instead of
-        the usual RGB format. So this function converts the color of the image so it can
-        be printed with plt without any issues in coloring.
-        '''
-        newimage = cv2.imread(image, cv2.IMREAD_COLOR)
-        RGB_image = cv2.cvtColor(newimage, cv2.COLOR_BGR2RGB)
-        RGB_pixels = np.array(RGB_image)
-        return RGB_pixels
-    
     def get_rectangles(self, img):
         '''
         Python example code extracted from
@@ -63,27 +50,6 @@ class AnimeFace:
             return faces
         except:
             return None
-  
-    def show_result(self, image) -> None:
-        '''
-        This function is used to confirm that the OpenCV2 has
-        successfully cropped the images of face from the
-        given file. 
-        '''
-        faces = self.get_rectangles(image)
-        image = self.make_image_for_plt(image)
-        for image_vertexes in faces:
-            # 0 -> x, 1 -> y, 2 -> w, 3 -> h
-            # image_vertexes = list(map(int, image_vertexes))
-            cv2.rectangle(
-                image,
-                (image_vertexes[0], image_vertexes[1]),
-                (image_vertexes[0] + image_vertexes[2], image_vertexes[1] + image_vertexes[3]),
-                (255, 0, 0),
-                2
-            )
-        plt.imshow(image)
-        #cv2.imwrite("/kaggle/input/datafiles/{}_out.png".format(self.instancefilenumbers), image)
         
     def crop(self, image) -> list:
         '''
