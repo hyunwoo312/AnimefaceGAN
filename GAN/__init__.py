@@ -38,13 +38,13 @@ class GenerativeAdversarialNetwork:
             self.G, self.D, self.GAN = self.network.build_and_compile()
             self.log = open("datafiles/output/logs/train_log_{}.txt"\
                             .format(datetime.now().strftime('%Y%m%d_%Hh%Mm')), "w+")
-            return self, self.log
+            return self
         
         if self.option == "waifus":
             '''
             import h5 pre-trained models. . .
             '''
-            return self, self.G
+            return self
         
         raise Exception("Object being constructed without a proper option.")
     
@@ -88,7 +88,7 @@ class GenerativeAdversarialNetwork:
             # imageset = imageset.reshape((imageset.shape[0],) + (128, 128, 3)) / 128.0 - 1.0
             real = imageset
             ###
-            
+            cv2.INTER_CUBIC
             ### NOISE IMAGE INPUT
             generated = self.G.predict(self.noise(batch_size))
             ###

@@ -155,5 +155,5 @@ Caffe prototext type format will be supported later(?)
         )
         return self.Generator, self.Discriminator, self.AdversarialNetwork
 
-n = Network()
-n.build_and_compile()
+#n = Network()
+#n.build_and_compile()

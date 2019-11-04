@@ -41,7 +41,7 @@ If you would like to quit this program, type 'quit' then press enter.
         assert option in options
         if option == "quit" or option == 'q':
             return #goes to 'finally'
-        with GenerativeAdversarialNetwork(option) as nn, util:
+        with GenerativeAdversarialNetwork(option) as nn:
             print(
 '''
 The current architecture for the GAN has been saved to
@@ -50,10 +50,10 @@ Caffe prototext type format will be supported later(?)
 '''
             )
             if option == options[0]: #train
-                log = util
+                pass
             
             if option == options[1]: #waifus
-                gen = util
+                pass
 
     except AssertionError:
         print("Invalid Option, please restart the program!")
